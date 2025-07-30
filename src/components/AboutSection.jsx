@@ -1,4 +1,4 @@
-import { Briefcase, Code, User } from "lucide-react";
+import { BracesIcon, Briefcase, Code, User } from "lucide-react";
 
 export const AboutSection = () => {
   return (
@@ -16,9 +16,9 @@ export const AboutSection = () => {
             </h3>
 
             <p className="text-muted-foreground">
-              With over 5 years of experience in web development, I specialize
-              in creating responsive, accessible, and performant web
-              applications using modern technologies.
+              Hello, Currently i am a I.T student with a passion for web
+              development. I specialize in creating dynamic and responsive web
+              applications for over 2 years of my journey.
             </p>
 
             <p className="text-muted-foreground">
@@ -75,14 +75,14 @@ export const AboutSection = () => {
             <div className="gradient-border p-6 card-hover">
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <Briefcase className="h-6 w-6 text-primary" />
+                  <BracesIcon className="h-6 w-6 text-primary" />
                 </div>
 
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Project Management</h4>
+                  <h4 className="font-semibold text-lg">Web Design</h4>
                   <p className="text-muted-foreground">
-                    Leading projects from conception to completion with agile
-                    methodologies.
+                    Leading projects by creating a visually appealing and
+                    user-friendly design.
                   </p>
                 </div>
               </div>
