@@ -62,12 +62,13 @@ export const Navbar = () => {
           className="flex items-center gap-2 text-lg font-bold"
           onClick={() => setIsMenuOpen(false)}
         >
-          <span
-            aria-hidden="true"
-            className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-sm font-bold text-primary-foreground"
-          >
-            AE
-          </span>
+          <img
+            src={profile.photo}
+            alt={`Portrait of ${profile.fullName}`}
+            width="560"
+            height="560"
+            className="h-9 w-9 rounded-lg object-cover ring-1 ring-primary/40"
+          />
           <span className="hidden sm:inline">
             <span className="text-glow">{profile.firstName}</span>{" "}
             <span className="text-muted-foreground font-medium">
