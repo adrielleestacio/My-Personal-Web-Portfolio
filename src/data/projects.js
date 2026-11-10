@@ -60,8 +60,8 @@ export const projects = [
     year: "2025",
     kind: "database",
     description:
-      "A plain PHP and MySQL app for managing client records — list, create, edit and delete — written with MySQLi and a Bootstrap 5 table UI, built to learn how server-side CRUD works without a framework.",
-    tags: ["PHP", "MySQL", "Bootstrap"],
+      "A plain PHP and MySQL app for managing client records — list, create, edit and delete — with a Bootstrap 5 UI. Built first to learn server-side CRUD without a framework, then hardened: prepared statements, validated IDs, escaped output, and a POST-only delete with confirmation.",
+    tags: ["PHP", "MySQL", "MySQLi", "Bootstrap"],
     image: null,
     demoUrl: null,
     githubUrl: "https://github.com/adrielleestacio/CRUD-OPERATION",
