@@ -7,10 +7,14 @@ import { SectionHeading } from "./SectionHeading";
 import { SocialLinks } from "./SocialLinks";
 import { Reveal } from "./Reveal";
 
-// Set VITE_CONTACT_ENDPOINT (e.g. a Formspree or Web3Forms URL) to receive
-// submissions directly. Without it the form opens the visitor's mail client
-// with the message pre-filled, so it never silently drops a message.
-const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT;
+// Delivery: set VITE_CONTACT_ACCESS_KEY to a Web3Forms key and submissions
+// land in your inbox with no backend. Any other JSON endpoint works via
+// VITE_CONTACT_ENDPOINT. With neither set, the form opens the visitor's mail
+// client with the message pre-filled, so it never silently drops a message.
+const accessKey = import.meta.env.VITE_CONTACT_ACCESS_KEY;
+const endpoint =
+  import.meta.env.VITE_CONTACT_ENDPOINT ||
+  (accessKey ? "https://api.web3forms.com/submit" : undefined);
 
 const details = [
   {
@@ -45,17 +49,33 @@ export const ContactSection = () => {
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form));
 
+    // A bot filled the hidden field: pretend it worked and drop it.
+    if (data.botcheck) {
+      form.reset();
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       if (endpoint) {
+        const payload = {
+          ...data,
+          subject: `Portfolio enquiry from ${data.name}`,
+          from_name: "Portfolio contact form",
+          ...(accessKey && { access_key: accessKey }),
+        };
+
         const response = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(data),
+          body: JSON.stringify(payload),
         });
 
-        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.success === false) {
+          throw new Error(result.message || `Request failed: ${response.status}`);
+        }
 
         toast({
           title: "Message sent",
@@ -193,6 +213,16 @@ export const ContactSection = () => {
                   placeholder="Hi Adrielle, we have an internship opening…"
                 />
               </div>
+
+              {/* Honeypot: invisible to people, but spam bots tick it. */}
+              <input
+                type="checkbox"
+                name="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
 
               <button
                 type="submit"

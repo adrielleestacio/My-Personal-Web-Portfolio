@@ -38,12 +38,19 @@ The résumé served by the **Download CV** buttons is
 ## Contact form
 
 By default the form opens the visitor's mail client with the message
-pre-filled. To receive submissions directly, create a `.env` file (see
-`.env.example`) with a form endpoint such as Formspree or Web3Forms:
+pre-filled. To have submissions delivered to your inbox instead:
 
-```bash
-VITE_CONTACT_ENDPOINT=https://formspree.io/f/your-form-id
-```
+1. Go to <https://web3forms.com>, enter your email, and copy the access key
+   they send you (it's safe to expose — it only lets the form send to you).
+2. Locally: create `.env` with `VITE_CONTACT_ACCESS_KEY=<key>` (see
+   `.env.example`).
+3. On Vercel: Project → **Settings → Environment Variables** → add
+   `VITE_CONTACT_ACCESS_KEY`, then **Redeploy** (Vite bakes env vars in at
+   build time, so a redeploy is required).
+
+Any other service that accepts a JSON POST works through
+`VITE_CONTACT_ENDPOINT`. The form includes a honeypot field, and a failed
+delivery shows your email address so a message is never silently lost.
 
 ## Project structure
 
