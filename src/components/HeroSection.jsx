@@ -9,6 +9,19 @@ export const HeroSection = () => {
     >
       <div className="container z-10 mx-auto max-w-4xl text-center">
         <div className="space-y-6">
+          <div className="animate-fade-in flex justify-center opacity-0">
+            <div className="rounded-full bg-linear-to-br from-primary to-primary/25 p-1 shadow-[0_0_35px_hsl(var(--primary)/0.3)]">
+              <img
+                src={profile.photo}
+                alt={`Portrait of ${profile.fullName}`}
+                width="560"
+                height="560"
+                fetchPriority="high"
+                className="h-28 w-28 rounded-full object-cover md:h-36 md:w-36"
+              />
+            </div>
+          </div>
+
           <p className="animate-fade-in inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm text-muted-foreground opacity-0 backdrop-blur-sm">
             <span className="relative flex h-2 w-2" aria-hidden="true">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
