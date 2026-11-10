@@ -1,8 +1,52 @@
-import { ArrowRight, ExternalLink, Github, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Code2,
+  Database,
+  ExternalLink,
+  Gamepad2,
+  Github,
+  ListChecks,
+  Lock,
+  Sparkles,
+} from "lucide-react";
 import { projects } from "@/data/projects";
 import { socials } from "@/data/profile";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+
+// Header art for projects that don't have a screenshot.
+const kindIcons = {
+  list: ListChecks,
+  game: Gamepad2,
+  database: Database,
+  lock: Lock,
+};
+
+const ProjectArt = ({ project }) => {
+  if (project.image) {
+    return (
+      <div className="h-48 overflow-hidden bg-secondary">
+        <img
+          src={project.image}
+          alt={`Screenshot of ${project.title}`}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      </div>
+    );
+  }
+
+  const Icon = kindIcons[project.kind] ?? Code2;
+
+  return (
+    <div
+      aria-hidden="true"
+      className="flex h-28 items-center justify-center bg-linear-to-br from-primary/15 to-primary/5"
+    >
+      <Icon className="h-10 w-10 text-primary/70 transition-transform duration-500 group-hover:scale-110" />
+    </div>
+  );
+};
 
 const Tag = ({ children }) => (
   <li className="rounded-full border border-border bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
@@ -117,16 +161,7 @@ export const ProjectsSection = () => {
               delay={index * 90}
               className="card-hover group flex flex-col overflow-hidden rounded-xl border border-border bg-card text-left"
             >
-              {project.image && (
-                <div className="h-48 overflow-hidden bg-secondary">
-                  <img
-                    src={project.image}
-                    alt={`Screenshot of ${project.title}`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-              )}
+              <ProjectArt project={project} />
 
               <div className="flex flex-1 flex-col p-6">
                 <ul className="mb-4 flex flex-wrap gap-2">
@@ -135,7 +170,14 @@ export const ProjectsSection = () => {
                   ))}
                 </ul>
 
-                <h3 className="mb-2 text-xl font-semibold">{project.title}</h3>
+                <div className="mb-2 flex items-baseline justify-between gap-3">
+                  <h3 className="text-xl font-semibold">{project.title}</h3>
+                  {project.year && (
+                    <span className="shrink-0 text-xs font-medium text-muted-foreground">
+                      {project.year}
+                    </span>
+                  )}
+                </div>
                 <p className="mb-6 flex-1 text-sm text-muted-foreground">
                   {project.description}
                 </p>

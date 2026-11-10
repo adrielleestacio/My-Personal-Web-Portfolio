@@ -22,6 +22,7 @@ export const projects = [
   {
     id: "youtube-clone",
     title: "YouTube Clone",
+    year: "2025",
     description:
       "A YouTube-style browsing experience built on the YouTube Data API — search, video playback, and channel pages in a familiar, responsive interface.",
     tags: ["React", "Tailwind CSS", "Node.js", "REST API"],
@@ -30,8 +31,57 @@ export const projects = [
     githubUrl: "https://github.com/adrielleestacio/Youtube-API",
   },
   {
+    id: "laravel-todo",
+    title: "To-Do List App",
+    year: "2025",
+    kind: "list",
+    description:
+      "A Laravel to-do app following the MVC pattern — an Eloquent model and migration, a controller for creating, viewing, editing, completing and deleting items, Blade templates, and flash messages for user feedback.",
+    tags: ["Laravel", "PHP", "Blade", "MySQL"],
+    image: null,
+    demoUrl: null,
+    githubUrl: "https://github.com/adrielleestacio/to-do-list",
+  },
+  {
+    id: "wordle",
+    title: "Wordle Clone",
+    year: "2025",
+    kind: "game",
+    description:
+      "A browser Wordle built from scratch in vanilla JavaScript — a generated board and on-screen keyboard, keyboard event handling, tile animations and five attempts per round — with the word list swapped for my classmates' names.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    image: null,
+    demoUrl: "https://adrielleestacio.github.io/Wordle-Game/",
+    githubUrl: "https://github.com/adrielleestacio/Wordle-Game",
+  },
+  {
+    id: "client-crud",
+    title: "Client Records CRUD",
+    year: "2025",
+    kind: "database",
+    description:
+      "A plain PHP and MySQL app for managing client records — list, create, edit and delete — written with MySQLi and a Bootstrap 5 table UI, built to learn how server-side CRUD works without a framework.",
+    tags: ["PHP", "MySQL", "Bootstrap"],
+    image: null,
+    demoUrl: null,
+    githubUrl: "https://github.com/adrielleestacio/CRUD-OPERATION",
+  },
+  {
+    id: "login-system",
+    title: "Register & Login System",
+    year: "2025",
+    kind: "lock",
+    description:
+      "A PHP registration and sign-in flow backed by a MySQL users table, with session-based access to a protected homepage and a logout route. One of my first back-end projects.",
+    tags: ["PHP", "MySQL", "Sessions"],
+    image: null,
+    demoUrl: null,
+    githubUrl: "https://github.com/adrielleestacio/login-form",
+  },
+  {
     id: "circular-tower",
     title: "Circular Tower Game",
+    year: "2025",
     description:
       "An interactive browser game built from scratch with vanilla JavaScript, focusing on game loop timing, collision logic, and canvas rendering.",
     tags: ["HTML", "CSS", "JavaScript"],
