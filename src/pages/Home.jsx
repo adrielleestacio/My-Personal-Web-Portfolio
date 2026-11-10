@@ -1,32 +1,36 @@
-import { ThemeToggle } from "../components/ThemeToggle"
-import { StarBackground } from "../components/StarBackground"
-import { Navbar } from "../components/Navbar"
-import { HeroSection } from "../components/HeroSection"
-import { AboutSection } from "../components/AboutSection"
-import { SkillsSection } from "../components/SkillsSection"
-import { ProjectsSection } from "../components/ProjectsSection"
-import { ContactSection } from "../components/ContactSection"
-import { Footer } from "../components/Footer";
-
+import { StarBackground } from "@/components/StarBackground";
+import { Navbar } from "@/components/Navbar";
+import { HeroSection } from "@/components/HeroSection";
+import { AboutSection } from "@/components/AboutSection";
+import { SkillsSection } from "@/components/SkillsSection";
+import { ProjectsSection } from "@/components/ProjectsSection";
+import { EducationSection } from "@/components/EducationSection";
+import { ContactSection } from "@/components/ContactSection";
+import { Footer } from "@/components/Footer";
 
 export const Home = () => {
+  return (
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+      >
+        Skip to content
+      </a>
 
-    return (
-        <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-            <ThemeToggle />
+      <StarBackground />
+      <Navbar />
 
-            <StarBackground />
+      <main id="main" className="relative z-10">
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <EducationSection />
+        <ContactSection />
+      </main>
 
-            <Navbar />
-
-            <main>
-                <HeroSection />
-                <AboutSection />
-                <SkillsSection />
-                <ProjectsSection />
-                <ContactSection />
-            </main>
-            <Footer />
-        </div>
-    )
-}
+      <Footer />
+    </div>
+  );
+};

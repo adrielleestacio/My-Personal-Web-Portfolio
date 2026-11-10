@@ -1,85 +1,118 @@
 import { useState } from "react";
+import {
+  Code,
+  Database,
+  LayoutDashboard,
+  Server,
+  Settings,
+  Sparkles,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
+import { skillGroups, softSkills } from "@/data/skills";
+import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
 
-const skills = [
-  // Frontend
-  { name: "HTML/CSS", level: 95, category: "frontend" },
-  { name: "JavaScript", level: 70, category: "frontend" },
-  { name: "React", level: 50, category: "frontend" },
-  { name: "TypeScript", level: 5, category: "frontend" },
-  { name: "Tailwind CSS", level: 40, category: "frontend" },
-  { name: "Next.js", level: 40, category: "frontend" },
+const icons = {
+  code: Code,
+  layout: LayoutDashboard,
+  server: Server,
+  database: Database,
+  settings: Settings,
+  sparkles: Sparkles,
+};
 
-  // Backend
-  { name: "Node.js", level: 10, category: "backend" },
-  { name: "Express", level: 2, category: "backend" },
-  { name: "MongoDB", level: 10, category: "backend" },
-  { name: "PostgreSQL", level: 15, category: "backend" },
-  { name: "GraphQL", level: 2, category: "backend" },
-
-  // Tools
-  { name: "Git/GitHub", level: 90, category: "tools" },
-  { name: "Docker", level: 2, category: "tools" },
-  { name: "Figma", level: 85, category: "tools" },
-  { name: "VS Code", level: 96, category: "tools" },
+const filters = [
+  { id: "all", label: "All" },
+  ...skillGroups.map((group) => ({ id: group.id, label: group.title })),
 ];
 
-const categories = ["all", "frontend", "backend", "tools"];
-
 export const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeFilter, setActiveFilter] = useState("all");
 
-  const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
-  );
+  const visibleGroups =
+    activeFilter === "all"
+      ? skillGroups
+      : skillGroups.filter((group) => group.id === activeFilter);
+
   return (
-    <section id="skills" className="py-24 px-4 relative bg-secondary/30">
+    <section id="skills" className="relative bg-secondary/40 px-4 py-24">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary"> Skills</span>
-        </h2>
+        <SectionHeading
+          eyebrow="Skills"
+          title="My"
+          accent="Skills"
+          description="The languages, frameworks and tools I work with — grouped the way I actually use them."
+        />
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category, key) => (
+        <Reveal
+          className="mb-12 flex flex-wrap justify-center gap-3"
+          role="tablist"
+          aria-label="Filter skills by category"
+        >
+          {filters.map((filter) => (
             <button
-              key={key}
-              onClick={() => setActiveCategory(category)}
+              key={filter.id}
+              type="button"
+              role="tab"
+              aria-selected={activeFilter === filter.id}
+              onClick={() => setActiveFilter(filter.id)}
               className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-                activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-forefround hover:bd-secondary"
+                "rounded-full px-5 py-2 text-sm transition-colors duration-300",
+                activeFilter === filter.id
+                  ? "bg-primary font-medium text-primary-foreground"
+                  : "bg-card text-foreground/80 hover:bg-card hover:text-primary"
               )}
             >
-              {category}
+              {filter.label}
             </button>
           ))}
+        </Reveal>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {visibleGroups.map((group, index) => {
+            const Icon = icons[group.icon] ?? Code;
+
+            return (
+              <Reveal
+                key={group.id}
+                delay={index * 80}
+                className="card-hover rounded-xl border border-border bg-card p-6 text-left"
+              >
+                <div className="mb-4 flex items-center gap-3">
+                  <span className="inline-flex rounded-lg bg-primary/10 p-2">
+                    <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
+                  </span>
+                  <h3 className="text-lg font-semibold">{group.title}</h3>
+                </div>
+
+                <ul className="flex flex-wrap gap-2">
+                  {group.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-foreground/80"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            );
+          })}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((skill, key) => (
-            <div
-              key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
-            >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg"> {skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{ width: skill.level + "%" }}
-                />
-              </div>
-
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}%
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Reveal className="mt-10 rounded-xl border border-border bg-card p-6 text-left">
+          <h3 className="mb-4 text-lg font-semibold">Soft Skills</h3>
+          <ul className="flex flex-wrap gap-2">
+            {softSkills.map((skill) => (
+              <li
+                key={skill}
+                className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
+              >
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );

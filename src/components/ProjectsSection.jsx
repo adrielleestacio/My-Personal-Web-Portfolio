@@ -1,110 +1,161 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, Sparkles } from "lucide-react";
+import { projects } from "@/data/projects";
+import { socials } from "@/data/profile";
+import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
 
-const projects = [
-  {
-    id: 1,
-    title: "Science Dynamic Portfolio",
-    description: "This website is dynamic and responsive, showcasing the student's work and skills.",
-    image: "/projects/project1.png",
-    tags: ["Html", "Css", "JavaScript"],
-    demoUrl: "https://deydeydeydeyxeydeyd.github.io/kay-carly/",
-    githubUrl: "https://github.com/deydeydeydeyxeydeyd/kay-carly",
-  },
-  {
-    id: 2,
-    title: "Circular Tower Game",
-    description:
-      "A fun and interactive game built with html, css and javascript",
-    image: "/projects/project2.png",
-    tags: ["Html", "Css", "JavaScript"],
-    demoUrl: "https://adrielleestacio.github.io/Circular-Tower-Game/",
-    githubUrl: "https://github.com/adrielleestacio/Circular-Tower-Game",
-  },
-  {
-    id: 3,
-    title: "Youtube Clone",
-    description:
-      "This website create's a dynamic user-friendly that  it’s fun, and familiar and it gaves browsing experience that feels just like the real thing!",
-    image: "/projects/project3.png",
-    tags: ["React", "Tailwindcss", "Node.js"],
-    demoUrl: "https://youtube-clone-by-dei.netlify.app/",
-    githubUrl: "https://github.com/adrielleestacio/Youtube-API",
-  },
-];
+const Tag = ({ children }) => (
+  <li className="rounded-full border border-border bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
+    {children}
+  </li>
+);
+
+const ProjectLinks = ({ project }) => (
+  <div className="flex items-center gap-3">
+    {project.demoUrl && (
+      <a
+        href={project.demoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open the live demo of ${project.title}`}
+        className="inline-flex items-center gap-1.5 text-sm text-foreground/80 transition-colors duration-300 hover:text-primary"
+      >
+        <ExternalLink size={18} aria-hidden="true" />
+        <span>Live demo</span>
+      </a>
+    )}
+    {project.githubUrl && (
+      <a
+        href={project.githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`View the source code of ${project.title} on GitHub`}
+        className="inline-flex items-center gap-1.5 text-sm text-foreground/80 transition-colors duration-300 hover:text-primary"
+      >
+        <Github size={18} aria-hidden="true" />
+        <span>Code</span>
+      </a>
+    )}
+  </div>
+);
+
+const FeaturedProject = ({ project }) => (
+  <Reveal className="mb-12 overflow-hidden rounded-2xl border border-border bg-card text-left">
+    <div className="border-b border-border bg-primary/5 px-6 py-4 sm:px-8">
+      <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-primary">
+        <Sparkles size={16} aria-hidden="true" />
+        Featured — Capstone Project
+      </p>
+    </div>
+
+    <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-5">
+      <div className="lg:col-span-3">
+        <h3 className="text-2xl font-semibold">{project.title}</h3>
+        <p className="mt-1 text-sm text-muted-foreground">{project.subtitle}</p>
+
+        <p className="mt-4 text-muted-foreground">{project.description}</p>
+
+        <h4 className="mt-6 text-sm font-semibold uppercase tracking-wider text-foreground/70">
+          My role — {project.role}
+        </h4>
+        <ul className="mt-3 space-y-2">
+          {project.contributions.map((item) => (
+            <li
+              key={item}
+              className="flex gap-3 text-sm text-muted-foreground"
+            >
+              <span
+                aria-hidden="true"
+                className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
+              />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="lg:col-span-2">
+        <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground/70">
+          Tools
+        </h4>
+        <ul className="mt-3 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </ul>
+
+        <div className="mt-6">
+          <ProjectLinks project={project} />
+        </div>
+      </div>
+    </div>
+  </Reveal>
+);
+
+const githubProfile = socials.find((s) => s.icon === "github").href;
 
 export const ProjectsSection = () => {
+  const featured = projects.find((project) => project.featured);
+  const rest = projects.filter((project) => !project.featured);
+
   return (
-    <section id="projects" className="py-24 px-4 relative">
+    <section id="projects" className="relative px-4 py-24">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          {" "}
-          Featured <span className="text-primary"> Projects </span>
-        </h2>
+        <SectionHeading
+          eyebrow="Projects"
+          title="Featured"
+          accent="Projects"
+          description="Things I've built — from a team capstone deployed with Docker and GitHub Actions to smaller projects I used to learn the fundamentals."
+        />
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Here are some of my recent projects. Each project was carefully
-          crafted with attention to detail, performance, and user experience.
-        </p>
+        {featured && <FeaturedProject project={featured} />}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, key) => (
-            <div
-              key={key}
-              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {rest.map((project, index) => (
+            <Reveal
+              key={project.id}
+              delay={index * 90}
+              className="card-hover group flex flex-col overflow-hidden rounded-xl border border-border bg-card text-left"
             >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-
-              <div className="p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                      {tag}
-                    </span>
-                  ))}
+              {project.image && (
+                <div className="h-48 overflow-hidden bg-secondary">
+                  <img
+                    src={project.image}
+                    alt={`Screenshot of ${project.title}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
+              )}
 
-                <h3 className="text-xl font-semibold mb-1"> {project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
+              <div className="flex flex-1 flex-col p-6">
+                <ul className="mb-4 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <Tag key={tag}>{tag}</Tag>
+                  ))}
+                </ul>
+
+                <h3 className="mb-2 text-xl font-semibold">{project.title}</h3>
+                <p className="mb-6 flex-1 text-sm text-muted-foreground">
                   {project.description}
                 </p>
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-3">
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <Github size={20} />
-                    </a>
-                  </div>
-                </div>
+
+                <ProjectLinks project={project} />
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <Reveal className="mt-12 text-center">
           <a
-            className="cosmic-button w-fit flex items-center mx-auto gap-2"
+            className="cosmic-button mx-auto w-fit"
             target="_blank"
-            href="https://github.com/adrielleestacio"
+            rel="noopener noreferrer"
+            href={githubProfile}
           >
-            Check My Github <ArrowRight size={16} />
+            Check My GitHub <ArrowRight size={16} aria-hidden="true" />
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

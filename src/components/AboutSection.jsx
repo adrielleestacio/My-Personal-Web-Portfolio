@@ -1,92 +1,80 @@
-import { BracesIcon, Briefcase, Code, User } from "lucide-react";
+import { Container, Download, FileText, Server, Code2 } from "lucide-react";
+import { profile } from "@/data/profile";
+import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
+
+const focusAreas = [
+  {
+    icon: Code2,
+    title: "Web Development",
+    description:
+      "Building responsive interfaces with React, Next.js and Tailwind CSS, backed by Node.js, Django or FastAPI.",
+  },
+  {
+    icon: Container,
+    title: "Deployment & DevOps",
+    description:
+      "Containerising apps with Docker and automating builds and releases with GitHub Actions.",
+  },
+  {
+    icon: Server,
+    title: "Databases & APIs",
+    description:
+      "Designing schemas and queries across MySQL, PostgreSQL, SQL Server and MongoDB, exposed through REST APIs.",
+  },
+  {
+    icon: FileText,
+    title: "Testing & Documentation",
+    description:
+      "System testing on real devices and technical writing — including Chapters 1–4 of our capstone paper.",
+  },
+];
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-24 px-4 relative">
-      {" "}
+    <section id="about" className="relative px-4 py-24">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          About <span className="text-primary"> Me</span>
-        </h2>
+        <SectionHeading eyebrow="About" title="About" accent="Me" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
+          <Reveal className="space-y-6 text-left">
             <h3 className="text-2xl font-semibold">
-              Passionate Web Developer & Currently I.T Student
+              IT student focused on web development and shipping real software
             </h3>
 
-            <p className="text-muted-foreground">
-              Hello, Currently i am a I.T student with a passion for web
-              development. I specialize in creating dynamic and responsive web
-              applications for over 2 years of my journey.
-            </p>
+            {profile.bio.map((paragraph, index) => (
+              <p key={index} className="text-muted-foreground">
+                {paragraph}
+              </p>
+            ))}
 
-            <p className="text-muted-foreground">
-              I'm passionate about creating elegant solutions to complex
-              problems, and I'm constantly learning new technologies and
-              techniques to stay at the forefront of the ever-evolving web
-              landscape.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
+            <div className="flex flex-col gap-4 pt-2 sm:flex-row">
               <a href="#contact" className="cosmic-button">
-                {" "}
                 Get In Touch
               </a>
-
-              <a
-                href=""
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
-              >
+              <a href={profile.resumeUrl} download className="ghost-button">
+                <Download size={16} aria-hidden="true" />
                 Download CV
               </a>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="grid grid-cols-1 gap-6">
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Code className="h-6 w-6 text-primary" />
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            {focusAreas.map((area, index) => (
+              <Reveal
+                key={area.title}
+                delay={index * 90}
+                className="gradient-border card-hover p-6 text-left"
+              >
+                <div className="mb-4 inline-flex rounded-full bg-primary/10 p-3">
+                  <area.icon className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg"> Web Development</h4>
-                  <p className="text-muted-foreground">
-                    Creating responsive websites and web applications with
-                    modern frameworks.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <User className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">UI/UX Design</h4>
-                  <p className="text-muted-foreground">
-                    Designing intuitive user interfaces and seamless user
-                    experiences.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <BracesIcon className="h-6 w-6 text-primary" />
-                </div>
-
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Web Design</h4>
-                  <p className="text-muted-foreground">
-                    Leading projects by creating a visually appealing and
-                    user-friendly design.
-                  </p>
-                </div>
-              </div>
-            </div>
+                <h4 className="mb-2 text-lg font-semibold">{area.title}</h4>
+                <p className="text-sm text-muted-foreground">
+                  {area.description}
+                </p>
+              </Reveal>
+            ))}
           </div>
         </div>
       </div>

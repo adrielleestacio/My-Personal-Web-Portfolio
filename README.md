@@ -1,12 +1,57 @@
-# React + Vite
+# Adrielle Estacio — Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio site for Adrielle Q. Estacio, BS Information Technology student at
+Pampanga State Agricultural University. Live at
+<https://my-personal-portfolio-pi-one.vercel.app/>.
 
-Currently, two official plugins are available:
+Built with React 19, Vite 7, Tailwind CSS v4 and React Router.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting started
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Script            | What it does                          |
+| ----------------- | ------------------------------------- |
+| `npm run dev`     | Start the dev server with HMR         |
+| `npm run build`   | Production build into `dist/`         |
+| `npm run preview` | Serve the production build locally    |
+| `npm run lint`    | Run ESLint                            |
+
+## Editing content
+
+All copy lives in `src/data/` so the components never need touching:
+
+| File                      | Contents                                        |
+| ------------------------- | ----------------------------------------------- |
+| `src/data/profile.js`     | Name, headline, bio, contact details, socials   |
+| `src/data/skills.js`      | Skill groups and soft skills                    |
+| `src/data/projects.js`    | Projects (the one with `featured: true` is pinned at the top) |
+| `src/data/education.js`   | Education history and seminars                  |
+
+The résumé served by the **Download CV** buttons is
+`public/resume/Adrielle-Estacio-Resume.docx` — replace that file to update it
+(a PDF works too; just update `resumeUrl` in `profile.js`).
+
+## Contact form
+
+By default the form opens the visitor's mail client with the message
+pre-filled. To receive submissions directly, create a `.env` file (see
+`.env.example`) with a form endpoint such as Formspree or Web3Forms:
+
+```bash
+VITE_CONTACT_ENDPOINT=https://formspree.io/f/your-form-id
+```
+
+## Project structure
+
+```
+src/
+├── components/   # Page sections and shared UI
+├── data/         # All site content
+├── hooks/        # useTheme, useActiveSection, useReveal, use-toast
+├── pages/        # Home and NotFound routes
+└── index.css     # Tailwind theme tokens, light/dark palette, utilities
+```

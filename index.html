@@ -2,9 +2,94 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+
+    <title>Adrielle Estacio — IT Student & Web Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Adrielle Estacio, a BS Information Technology student at Pampanga State Agricultural University seeking an IT internship in software or web development. React, Node.js, Python, Docker and GitHub Actions."
+    />
+    <meta name="author" content="Adrielle Q. Estacio" />
+    <meta
+      name="keywords"
+      content="Adrielle Estacio, IT intern, web developer, React, Node.js, Python, Docker, GitHub Actions, Pampanga, Philippines"
+    />
+    <link rel="canonical" href="https://my-personal-portfolio-pi-one.vercel.app/" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#6d5ce0" />
+
+    <!-- Open Graph / social previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Adrielle Estacio" />
+    <meta
+      property="og:title"
+      content="Adrielle Estacio — IT Student & Web Developer"
+    />
+    <meta
+      property="og:description"
+      content="BS Information Technology student seeking an IT internship in software or web development. Currently handling deployment and DevOps for HabitAI."
+    />
+    <meta property="og:url" content="https://my-personal-portfolio-pi-one.vercel.app/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Adrielle Estacio — IT Student & Web Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="BS Information Technology student seeking an IT internship in software or web development."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Adrielle Q. Estacio",
+        "jobTitle": "BS Information Technology Student",
+        "email": "mailto:adrielleestacio00@gmail.com",
+        "url": "https://my-personal-portfolio-pi-one.vercel.app/",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Magalang",
+          "addressRegion": "Pampanga",
+          "addressCountry": "PH"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Pampanga State Agricultural University"
+        },
+        "sameAs": [
+          "https://github.com/adrielleestacio",
+          "https://www.linkedin.com/in/adrielle-estacio-429990377/"
+        ]
+      }
+    </script>
+
+    <script>
+      // Apply the stored or system theme before first paint to avoid a flash
+      // of the wrong theme on load.
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var dark =
+            stored === "dark" ||
+            (!stored &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.toggle("dark", dark);
+          document.documentElement.style.colorScheme = dark ? "dark" : "light";
+        } catch (e) {
+          /* localStorage unavailable — fall back to the light theme. */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
