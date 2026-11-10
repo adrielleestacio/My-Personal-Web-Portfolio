@@ -72,8 +72,8 @@ export const projects = [
     year: "2025",
     kind: "lock",
     description:
-      "A PHP registration and sign-in flow backed by a MySQL users table, with session-based access to a protected homepage and a logout route. One of my first back-end projects.",
-    tags: ["PHP", "MySQL", "Sessions"],
+      "A PHP registration and sign-in flow on a MySQL users table with a session-protected homepage. Started as a tutorial-style build, later hardened: bcrypt password hashing, prepared statements against SQL injection, session-ID regeneration on login, escaped output, and a transparent md5-to-bcrypt upgrade for existing accounts.",
+    tags: ["PHP", "MySQL", "bcrypt", "Sessions"],
     image: null,
     demoUrl: null,
     githubUrl: "https://github.com/adrielleestacio/login-form",
