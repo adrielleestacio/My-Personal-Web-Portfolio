@@ -2,8 +2,14 @@ export const profile = {
   firstName: "Adrielle",
   // Short name shown on the custom cursor flag. Change freely.
   cursorName: "Dei",
-  // Typed out by the hero typewriter.
-  roles: ["I am a BS Information Technology Student (Undergraduate)"],
+  // Cycled by the hero typewriter, one full sentence at a time.
+  roles: [
+    "I am a BS Information Technology Student (Undergraduate)",
+    "I am an aspiring Web Developer",
+    "I am into DevOps & Deployment",
+    "I am a Backend Developer",
+    "I am an IT Internship Applicant",
+  ],
   lastName: "Estacio",
   fullName: "Adrielle Q. Estacio",
   role: "BS Information Technology Student",
