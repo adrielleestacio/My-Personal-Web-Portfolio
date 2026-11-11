@@ -298,8 +298,10 @@
    falloff — no blur filter, so it stays cheap to animate. */
 @utility aurora-blob {
   @apply absolute rounded-full;
-  filter: blur(8px);
+  /* The radial gradient already fades to transparent, so no blur filter is
+     needed — dropping it removes an expensive paint on every load. */
   will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Faint technical grid that fades out towards the edges. */

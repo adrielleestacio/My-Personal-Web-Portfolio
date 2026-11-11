@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // Large ambient glows. Positions/sizes are in viewport units so they scale
@@ -32,52 +33,51 @@ const auroraBlobs = [
   },
 ];
 
-export const StarBackground = () => {
-  const [stars, setStars] = useState([]);
-  const [meteors, setMeteors] = useState([]);
+const buildStars = () => {
+  if (typeof window === "undefined") return [];
+  const numberOfStars = Math.floor(
+    (window.innerWidth * window.innerHeight) / 11000
+  );
+  return Array.from({ length: numberOfStars }, (_, id) => ({
+    id,
+    size: Math.random() * 2.5 + 1,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    opacity: Math.random() * 0.4 + 0.3,
+    animationDuration: Math.random() * 4 + 2,
+    animationDelay: Math.random() * 5,
+  }));
+};
 
+const buildMeteors = () =>
+  Array.from({ length: 4 }, (_, id) => ({
+    id,
+    size: Math.random() * 2 + 1,
+    x: Math.random() * 100,
+    y: Math.random() * 20,
+    // Spread the first streaks out so a refresh doesn't fire them all at once.
+    delay: 4 + Math.random() * 16,
+    animationDuration: Math.random() * 3 + 3,
+  }));
+
+export const StarBackground = () => {
+  // Generated during the first render (not in an effect) so the stars are
+  // painted on the very first frame — no empty flash / pop-in on refresh.
+  const [stars, setStars] = useState(() =>
+    prefersReducedMotion() ? [] : buildStars()
+  );
+  const [meteors] = useState(() =>
+    prefersReducedMotion() ? [] : buildMeteors()
+  );
+
+  // Only re-generate the star field when the window size changes.
   useEffect(() => {
     if (prefersReducedMotion()) return;
 
-    const generateStars = () => {
-      const numberOfStars = Math.floor(
-        (window.innerWidth * window.innerHeight) / 11000
-      );
-
-      setStars(
-        Array.from({ length: numberOfStars }, (_, id) => ({
-          id,
-          size: Math.random() * 2.5 + 1,
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          opacity: Math.random() * 0.4 + 0.3,
-          animationDuration: Math.random() * 4 + 2,
-          animationDelay: Math.random() * 5,
-        }))
-      );
-    };
-
-    const generateMeteors = () => {
-      setMeteors(
-        Array.from({ length: 4 }, (_, id) => ({
-          id,
-          size: Math.random() * 2 + 1,
-          x: Math.random() * 100,
-          y: Math.random() * 20,
-          delay: Math.random() * 15,
-          animationDuration: Math.random() * 3 + 3,
-        }))
-      );
-    };
-
-    generateStars();
-    generateMeteors();
-
-    // Debounced so a drag-resize doesn't regenerate on every frame.
     let timeout;
     const handleResize = () => {
       clearTimeout(timeout);
-      timeout = setTimeout(generateStars, 200);
+      timeout = setTimeout(() => setStars(buildStars()), 200);
     };
 
     window.addEventListener("resize", handleResize);
@@ -92,7 +92,7 @@ export const StarBackground = () => {
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
-      {/* Ambient aurora glows — always rendered (they don't move under
+      {/* Ambient aurora glows — always rendered (they don't drift under
           reduced-motion because the animation utilities are disabled there). */}
       {auroraBlobs.map((blob) => (
         <div
