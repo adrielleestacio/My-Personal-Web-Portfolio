@@ -7,7 +7,6 @@ export const profile = {
   lastName: "Estacio",
   fullName: "Adrielle Q. Estacio",
   role: "BS Information Technology Student",
-  tagline: "IT Internship Applicant",
   headline:
     "I build web applications end to end — and I ship them. Right now I handle deployment and DevOps for HabitAI, our AI-powered habit tracker.",
   bio: [
