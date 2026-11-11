@@ -33,7 +33,7 @@ export const socials = [
   },
   {
     name: "Facebook",
-    href: "https://www.facebook.com/share/1FAptajzXs/",
+    href: "https://www.facebook.com/notdeiiii",
     icon: "facebook",
   },
   {
