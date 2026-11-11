@@ -97,6 +97,6 @@ export const projects = [
     tags: ["HTML", "CSS", "JavaScript"],
     image: "/projects/project1.png",
     demoUrl: "https://deydeydeydeyxeydeyd.github.io/kay-carly/",
-    githubUrl: "https://github.com/deydeydeydeyxeydeyd/kay-carly",
+    githubUrl: "https://github.com/adrielleestacio/kay-carly",
   },
 ];
