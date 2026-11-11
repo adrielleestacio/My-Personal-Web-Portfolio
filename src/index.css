@@ -35,7 +35,33 @@
   --animate-fade-in-delay-5: fade-in 0.7s ease-out 0.75s forwards;
   --animate-meteor: meteor 5s linear infinite;
   --animate-grow: grow 1.2s ease-out forwards;
+  --animate-twinkle: twinkle 4s ease-in-out infinite;
+  --animate-aurora: aurora-drift 26s ease-in-out infinite;
+  --animate-aurora-slow: aurora-drift 38s ease-in-out infinite reverse;
 
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.2;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+  @keyframes aurora-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(6%, -5%, 0) scale(1.12);
+    }
+    66% {
+      transform: translate3d(-5%, 4%, 0) scale(0.94);
+    }
+  }
   @keyframes float {
     0%,
     100% {
@@ -113,6 +139,13 @@
 
     /* Star-field colour — purple on light so it doesn't read as dust. */
     --sky: 250 47% 55%;
+
+    /* Ambient background glows. Two hues (violet + blue) give a nebula feel.
+       Kept faint on light so text stays crisp. */
+    --aurora-1: 250 70% 60%;
+    --aurora-2: 210 80% 60%;
+    --aurora-opacity: 0.1;
+    --grid-opacity: 0.04;
   }
 
   .dark {
@@ -139,6 +172,12 @@
     --ring: 250 65% 68%;
 
     --sky: 213 31% 91%;
+
+    /* Richer glows on dark for a deep-space look. */
+    --aurora-1: 255 75% 62%;
+    --aurora-2: 200 85% 55%;
+    --aurora-opacity: 0.22;
+    --grid-opacity: 0.05;
   }
 
   * {
@@ -253,6 +292,36 @@
     transparent
   );
   box-shadow: 0 0 10px 4px hsl(var(--sky) / 0.15);
+}
+
+/* A large, soft radial glow. Soft edges come from the gradient's transparent
+   falloff — no blur filter, so it stays cheap to animate. */
+@utility aurora-blob {
+  @apply absolute rounded-full;
+  filter: blur(8px);
+  will-change: transform;
+}
+
+/* Faint technical grid that fades out towards the edges. */
+@utility bg-grid {
+  @apply absolute inset-0;
+  background-image: linear-gradient(
+      to right,
+      hsl(var(--foreground) / var(--grid-opacity)) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      hsl(var(--foreground) / var(--grid-opacity)) 1px,
+      transparent 1px
+    );
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 10%, transparent 75%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 55% at 50% 0%,
+    #000 10%,
+    transparent 75%
+  );
 }
 
 /* Scroll-reveal: elements start hidden and animate in when observed. */
