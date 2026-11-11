@@ -6,9 +6,9 @@ export const profile = {
   roles: [
     "I am a BS Information Technology Student (Undergraduate)",
     "I am an aspiring Web Developer",
-    "I am into DevOps & Deployment",
-    "I am a Backend Developer",
-    "I am an IT Internship Applicant",
+    "I am a Back-End Developer",
+    "I specialize in Deployment and DevOps",
+    "I am seeking an IT Internship opportunity",
   ],
   lastName: "Estacio",
   fullName: "Adrielle Q. Estacio",
