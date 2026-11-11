@@ -159,6 +159,7 @@ export const ProjectsSection = () => {
             <Reveal
               key={project.id}
               delay={index * 90}
+              data-cursor={`${project.title} — take a look`}
               className="card-hover group flex flex-col overflow-hidden rounded-xl border border-border bg-card text-left"
             >
               <ProjectArt project={project} />
@@ -194,6 +195,7 @@ export const ProjectsSection = () => {
             target="_blank"
             rel="noopener noreferrer"
             href={githubProfile}
+            data-cursor="All my repos on GitHub"
           >
             Check My GitHub <ArrowRight size={16} aria-hidden="true" />
           </a>

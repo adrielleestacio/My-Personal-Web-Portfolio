@@ -10,7 +10,10 @@ export const HeroSection = () => {
       <div className="container z-10 mx-auto max-w-4xl text-center">
         <div className="space-y-6">
           <div className="animate-fade-in flex justify-center opacity-0">
-            <div className="rounded-full bg-linear-to-br from-primary to-primary/25 p-1 shadow-[0_0_35px_hsl(var(--primary)/0.3)]">
+            <div
+              data-cursor="Hi, I'm Adrielle 👋"
+              className="rounded-full bg-linear-to-br from-primary to-primary/25 p-1 shadow-[0_0_35px_hsl(var(--primary)/0.3)]"
+            >
               <img
                 src={profile.photo}
                 alt={`Portrait of ${profile.fullName}`}
@@ -63,10 +66,19 @@ export const HeroSection = () => {
           </div>
 
           <div className="animate-fade-in-delay-4 flex flex-col items-center justify-center gap-4 pt-2 opacity-0 sm:flex-row">
-            <a href="#projects" className="cosmic-button">
+            <a
+              href="#projects"
+              data-cursor="See what I've built"
+              className="cosmic-button"
+            >
               View My Work
             </a>
-            <a href={profile.resumeUrl} download className="ghost-button">
+            <a
+              href={profile.resumeUrl}
+              download
+              data-cursor="Download my CV"
+              className="ghost-button"
+            >
               <Download size={16} aria-hidden="true" />
               Download Résumé
             </a>

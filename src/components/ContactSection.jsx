@@ -227,6 +227,7 @@ export const ContactSection = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
+                data-cursor="Send it my way"
                 className="cosmic-button w-full"
               >
                 {isSubmitting ? "Sending…" : "Send Message"}

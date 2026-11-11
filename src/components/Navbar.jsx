@@ -6,12 +6,12 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 import { profile } from "@/data/profile";
 
 const navItems = [
-  { name: "Home", id: "hero" },
-  { name: "About", id: "about" },
-  { name: "Skills", id: "skills" },
-  { name: "Projects", id: "projects" },
-  { name: "Education", id: "education" },
-  { name: "Contact", id: "contact" },
+  { name: "Home", id: "hero", tour: "Back to the top" },
+  { name: "About", id: "about", tour: "A bit about me" },
+  { name: "Skills", id: "skills", tour: "What I work with" },
+  { name: "Projects", id: "projects", tour: "Things I've built" },
+  { name: "Education", id: "education", tour: "Where I study" },
+  { name: "Contact", id: "contact", tour: "Let's get in touch" },
 ];
 
 const sectionIds = navItems.map((item) => item.id);
@@ -59,6 +59,7 @@ export const Navbar = () => {
       <div className="container flex items-center justify-between gap-4">
         <a
           href="#hero"
+          data-cursor="That's me 👋"
           className="flex items-center gap-2 text-lg font-bold"
           onClick={() => setIsMenuOpen(false)}
         >
@@ -83,6 +84,7 @@ export const Navbar = () => {
             <a
               key={item.id}
               href={`#${item.id}`}
+              data-cursor={item.tour}
               aria-current={activeId === item.id ? "true" : undefined}
               className={cn(
                 "rounded-full px-3 py-1.5 text-sm transition-colors duration-300",
@@ -100,6 +102,7 @@ export const Navbar = () => {
           <a
             href={profile.resumeUrl}
             download
+            data-cursor="Grab my résumé"
             className="hidden rounded-full border border-border px-4 py-1.5 text-sm font-medium transition-colors hover:border-primary hover:text-primary lg:inline-block"
           >
             Résumé

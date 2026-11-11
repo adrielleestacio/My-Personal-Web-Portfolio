@@ -1,4 +1,5 @@
 import { StarBackground } from "@/components/StarBackground";
+import { CustomCursor } from "@/components/CustomCursor";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
@@ -19,6 +20,7 @@ export const Home = () => {
       </a>
 
       <StarBackground />
+      <CustomCursor />
       <Navbar />
 
       <main id="main" className="relative z-10">

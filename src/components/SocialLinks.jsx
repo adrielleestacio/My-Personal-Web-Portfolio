@@ -22,6 +22,7 @@ export const SocialLinks = ({ className, size = 22 }) => (
             rel="noopener noreferrer"
             aria-label={`${social.name} profile`}
             title={social.name}
+            data-cursor={`Follow me on ${social.name}`}
             className="inline-flex text-foreground/70 transition-colors duration-300 hover:text-primary"
           >
             <Icon size={size} aria-hidden="true" />

@@ -1,5 +1,7 @@
 export const profile = {
   firstName: "Adrielle",
+  // Short name shown on the custom cursor flag. Change freely.
+  cursorName: "Dei",
   lastName: "Estacio",
   fullName: "Adrielle Q. Estacio",
   role: "BS Information Technology Student",
