@@ -1,5 +1,6 @@
 import { StarBackground } from "@/components/StarBackground";
 import { CustomCursor } from "@/components/CustomCursor";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
@@ -21,6 +22,7 @@ export const Home = () => {
 
       <StarBackground />
       <CustomCursor />
+      <ScrollProgress />
       <Navbar />
 
       <main id="main" className="relative z-10">

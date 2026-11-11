@@ -1,5 +1,7 @@
 import { ArrowDown, Download, MapPin, Mail } from "lucide-react";
 import { profile, highlights } from "@/data/profile";
+import { Typewriter } from "./Typewriter";
+import { Magnetic } from "./Magnetic";
 
 export const HeroSection = () => {
   return (
@@ -47,6 +49,14 @@ export const HeroSection = () => {
             {profile.role} · {profile.tagline}
           </p>
 
+          <p className="animate-fade-in-delay-3 text-base opacity-0 md:text-lg">
+            <span className="text-muted-foreground">Aspiring </span>
+            <Typewriter
+              words={profile.roles}
+              className="font-semibold text-primary"
+            />
+          </p>
+
           <p className="animate-fade-in-delay-3 mx-auto max-w-2xl text-base text-muted-foreground opacity-0 md:text-lg">
             {profile.headline}
           </p>
@@ -66,22 +76,26 @@ export const HeroSection = () => {
           </div>
 
           <div className="animate-fade-in-delay-4 flex flex-col items-center justify-center gap-4 pt-2 opacity-0 sm:flex-row">
-            <a
-              href="#projects"
-              data-cursor="See what I've built"
-              className="cosmic-button"
-            >
-              View My Work
-            </a>
-            <a
-              href={profile.resumeUrl}
-              download
-              data-cursor="Download my CV"
-              className="ghost-button"
-            >
-              <Download size={16} aria-hidden="true" />
-              Download Résumé
-            </a>
+            <Magnetic>
+              <a
+                href="#projects"
+                data-cursor="See what I've built"
+                className="cosmic-button"
+              >
+                View My Work
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href={profile.resumeUrl}
+                download
+                data-cursor="Download my CV"
+                className="ghost-button"
+              >
+                <Download size={16} aria-hidden="true" />
+                Download Résumé
+              </a>
+            </Magnetic>
           </div>
 
           <dl className="animate-fade-in-delay-5 mx-auto grid max-w-2xl grid-cols-1 gap-4 pt-8 opacity-0 sm:grid-cols-3">

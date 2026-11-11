@@ -13,6 +13,7 @@ import { projects } from "@/data/projects";
 import { socials } from "@/data/profile";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+import { TiltCard } from "./TiltCard";
 
 // Header art for projects that don't have a screenshot.
 const kindIcons = {
@@ -160,31 +161,32 @@ export const ProjectsSection = () => {
               key={project.id}
               delay={index * 90}
               data-cursor={`${project.title} — take a look`}
-              className="card-hover group flex flex-col overflow-hidden rounded-xl border border-border bg-card text-left"
             >
-              <ProjectArt project={project} />
+              <TiltCard className="flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card text-left transition-shadow duration-300 hover:border-primary/40 hover:shadow-xl">
+                <ProjectArt project={project} />
 
-              <div className="flex flex-1 flex-col p-6">
-                <ul className="mb-4 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Tag key={tag}>{tag}</Tag>
-                  ))}
-                </ul>
+                <div className="flex flex-1 flex-col p-6">
+                  <ul className="mb-4 flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <Tag key={tag}>{tag}</Tag>
+                    ))}
+                  </ul>
 
-                <div className="mb-2 flex items-baseline justify-between gap-3">
-                  <h3 className="text-xl font-semibold">{project.title}</h3>
-                  {project.year && (
-                    <span className="shrink-0 text-xs font-medium text-muted-foreground">
-                      {project.year}
-                    </span>
-                  )}
+                  <div className="mb-2 flex items-baseline justify-between gap-3">
+                    <h3 className="text-xl font-semibold">{project.title}</h3>
+                    {project.year && (
+                      <span className="shrink-0 text-xs font-medium text-muted-foreground">
+                        {project.year}
+                      </span>
+                    )}
+                  </div>
+                  <p className="mb-6 flex-1 text-sm text-muted-foreground">
+                    {project.description}
+                  </p>
+
+                  <ProjectLinks project={project} />
                 </div>
-                <p className="mb-6 flex-1 text-sm text-muted-foreground">
-                  {project.description}
-                </p>
-
-                <ProjectLinks project={project} />
-              </div>
+              </TiltCard>
             </Reveal>
           ))}
         </div>

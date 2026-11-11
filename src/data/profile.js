@@ -2,6 +2,13 @@ export const profile = {
   firstName: "Adrielle",
   // Short name shown on the custom cursor flag. Change freely.
   cursorName: "Dei",
+  // Cycled by the hero typewriter.
+  roles: [
+    "Web Developer",
+    "DevOps & Deployment",
+    "Backend Developer",
+    "IT Intern",
+  ],
   lastName: "Estacio",
   fullName: "Adrielle Q. Estacio",
   role: "BS Information Technology Student",
