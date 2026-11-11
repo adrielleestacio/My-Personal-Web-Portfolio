@@ -45,12 +45,7 @@ export const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="animate-fade-in-delay-3 text-lg font-medium text-foreground/90 opacity-0 md:text-xl">
-            {profile.role} · {profile.tagline}
-          </p>
-
-          <p className="animate-fade-in-delay-3 text-base opacity-0 md:text-lg">
-            <span className="text-muted-foreground">Aspiring </span>
+          <p className="animate-fade-in-delay-3 min-h-[2em] text-lg font-medium opacity-0 md:text-xl">
             <Typewriter
               words={profile.roles}
               className="font-semibold text-primary"

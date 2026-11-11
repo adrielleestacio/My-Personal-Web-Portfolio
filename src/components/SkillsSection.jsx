@@ -1,11 +1,17 @@
 import { useState } from "react";
 import {
+  Clock,
   Code,
   Database,
+  Ear,
+  Handshake,
   LayoutDashboard,
+  MessageCircle,
   Server,
   Settings,
+  Shuffle,
   Sparkles,
+  Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { skillGroups, softSkills } from "@/data/skills";
@@ -19,6 +25,46 @@ const icons = {
   database: Database,
   settings: Settings,
   sparkles: Sparkles,
+};
+
+const softIcons = {
+  message: MessageCircle,
+  ear: Ear,
+  users: Users,
+  shuffle: Shuffle,
+  clock: Clock,
+  handshake: Handshake,
+};
+
+/**
+ * A skill chip with its brand logo. Falls back to the group's icon when the
+ * skill has no brand mark, and hides the image if the CDN ever fails so a
+ * broken-image icon never shows.
+ */
+const SkillChip = ({ skill, fallbackIcon }) => {
+  const FallbackIcon = fallbackIcon;
+
+  return (
+  <li className="flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:border-primary/50 hover:text-foreground">
+    {skill.slug ? (
+      <img
+        src={`https://cdn.simpleicons.org/${skill.slug}/${skill.color}`}
+        alt=""
+        aria-hidden="true"
+        width="16"
+        height="16"
+        loading="lazy"
+        className="h-4 w-4 shrink-0"
+        onError={(e) => {
+          e.currentTarget.style.display = "none";
+        }}
+      />
+    ) : (
+      <FallbackIcon className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+    )}
+    {skill.name}
+  </li>
+  );
 };
 
 const filters = [
@@ -87,12 +133,11 @@ export const SkillsSection = () => {
 
                 <ul className="flex flex-wrap gap-2">
                   {group.skills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-foreground/80"
-                    >
-                      {skill}
-                    </li>
+                    <SkillChip
+                      key={skill.name}
+                      skill={skill}
+                      fallbackIcon={Icon}
+                    />
                   ))}
                 </ul>
               </Reveal>
@@ -103,14 +148,19 @@ export const SkillsSection = () => {
         <Reveal className="mt-10 rounded-xl border border-border bg-card p-6 text-left">
           <h3 className="mb-4 text-lg font-semibold">Soft Skills</h3>
           <ul className="flex flex-wrap gap-2">
-            {softSkills.map((skill) => (
-              <li
-                key={skill}
-                className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
-              >
-                {skill}
-              </li>
-            ))}
+            {softSkills.map((skill) => {
+              const SoftIcon = softIcons[skill.icon] ?? Sparkles;
+
+              return (
+                <li
+                  key={skill.name}
+                  className="flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary"
+                >
+                  <SoftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  {skill.name}
+                </li>
+              );
+            })}
           </ul>
         </Reveal>
       </div>
