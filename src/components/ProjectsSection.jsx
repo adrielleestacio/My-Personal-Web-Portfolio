@@ -93,6 +93,17 @@ const FeaturedProject = ({ project }) => (
       </p>
     </div>
 
+    {project.image && (
+      <div className="border-b border-border bg-secondary/40">
+        <img
+          src={project.image}
+          alt={`Screenshot of ${project.title}`}
+          loading="lazy"
+          className="w-full object-cover"
+        />
+      </div>
+    )}
+
     <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-5">
       <div className="lg:col-span-3">
         <h3 className="text-2xl font-semibold">{project.title}</h3>

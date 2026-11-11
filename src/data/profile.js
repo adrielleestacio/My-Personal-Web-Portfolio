@@ -24,7 +24,7 @@ export const profile = {
   email: "adrielleestacio00@gmail.com",
   phoneDisplay: "0906 091 5912",
   phoneHref: "+639060915912",
-  resumeUrl: "/resume/Adrielle-Estacio-Resume.docx",
+  resumeUrl: "/resume/Adrielle-Estacio-Resume.pdf",
   photo: "/profile/adrielle.webp",
   availability: "Open to IT internship opportunities",
 };

@@ -15,7 +15,7 @@ export const projects = [
       "Prepared the system evaluation involving 15 faculty respondents.",
     ],
     tags: ["Docker", "GitHub Actions", "PWA", "TypeScript", "Android Studio"],
-    image: null,
+    image: "/projects/habitai.webp",
     demoUrl: null,
     githubUrl: "https://github.com/adrielleestacio/Capstone-Project",
   },
