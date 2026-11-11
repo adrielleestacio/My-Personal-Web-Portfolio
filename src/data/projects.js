@@ -26,7 +26,7 @@ export const projects = [
     description:
       "A YouTube-style browsing experience built on the YouTube Data API — search, video playback, and channel pages in a familiar, responsive interface.",
     tags: ["React", "Tailwind CSS", "Node.js", "REST API"],
-    image: "/projects/project3.png",
+    image: "/projects/project3.webp",
     demoUrl: "https://youtube-clone-by-dei.netlify.app/",
     githubUrl: "https://github.com/adrielleestacio/Youtube-API",
   },
@@ -85,18 +85,19 @@ export const projects = [
     description:
       "An interactive browser game built from scratch with vanilla JavaScript, focusing on game loop timing, collision logic, and canvas rendering.",
     tags: ["HTML", "CSS", "JavaScript"],
-    image: "/projects/project2.png",
+    image: "/projects/project2.webp",
     demoUrl: "https://adrielleestacio.github.io/Circular-Tower-Game/",
     githubUrl: "https://github.com/adrielleestacio/Circular-Tower-Game",
   },
   {
     id: "science-portfolio",
-    title: "Science Dynamic Portfolio",
+    title: "Science Dynamics",
+    year: "2024",
     description:
-      "A responsive portfolio site built for a student to showcase their work and skills, with a dynamic layout that adapts across screen sizes.",
-    tags: ["HTML", "CSS", "JavaScript"],
-    image: "/projects/project1.png",
-    demoUrl: "https://deydeydeydeyxeydeyd.github.io/kay-carly/",
+      "An interactive science education site built for a university group — a clickable guide to the essential elements, organic vs. inorganic compounds, and the water cycle, plus a Wordle mini-game. Later rebuilt for readable mobile typography, a working hamburger menu, and smooth section transitions.",
+    tags: ["HTML", "CSS", "JavaScript", "Responsive"],
+    image: "/projects/project1.webp",
+    demoUrl: "https://adrielleestacio.github.io/kay-carly/",
     githubUrl: "https://github.com/adrielleestacio/kay-carly",
   },
 ];
