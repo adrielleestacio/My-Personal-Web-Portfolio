@@ -11,6 +11,7 @@ const navItems = [
   { name: "Skills", id: "skills", tour: "What I work with" },
   { name: "Projects", id: "projects", tour: "Things I've built" },
   { name: "Education", id: "education", tour: "Where I study" },
+  { name: "Certificates", id: "certificates", tour: "What I've earned" },
   { name: "Contact", id: "contact", tour: "Let's get in touch" },
 ];
 

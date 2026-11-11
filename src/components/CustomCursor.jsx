@@ -13,6 +13,7 @@ const tourStops = [
   { selector: 'nav a[href="#skills"]', label: "The tools I work with" },
   { selector: 'nav a[href="#projects"]', label: "Projects I've built" },
   { selector: 'nav a[href="#education"]', label: "Where I study" },
+  { selector: 'nav a[href="#certificates"]', label: "What I've earned" },
   { selector: 'nav a[href="#contact"]', label: "Let's work together!" },
 ];
 
