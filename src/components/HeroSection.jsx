@@ -2,6 +2,7 @@ import { ArrowDown, Download, MapPin, Mail } from "lucide-react";
 import { profile, highlights } from "@/data/profile";
 import { Typewriter } from "./Typewriter";
 import { Magnetic } from "./Magnetic";
+import { TiltCard } from "./TiltCard";
 
 export const HeroSection = () => {
   return (
@@ -12,19 +13,26 @@ export const HeroSection = () => {
       <div className="container z-10 mx-auto max-w-4xl text-center">
         <div className="space-y-6">
           <div className="animate-fade-in flex justify-center opacity-0">
-            <div
+            <TiltCard
+              max={12}
+              glare={false}
               data-cursor="Hi, I'm Adrielle 👋"
-              className="rounded-full bg-linear-to-br from-primary to-primary/25 p-1 shadow-[0_0_35px_hsl(var(--primary)/0.3)]"
+              className="rounded-full"
             >
-              <img
-                src={profile.photo}
-                alt={`Portrait of ${profile.fullName}`}
-                width="560"
-                height="560"
-                fetchPriority="high"
-                className="h-28 w-28 rounded-full object-cover md:h-36 md:w-36"
-              />
-            </div>
+              {/* A rim light orbiting slowly behind the portrait. */}
+              <span aria-hidden="true" className="orbit-ring -inset-3" />
+
+              <div className="layer-3d rounded-full bg-linear-to-br from-primary to-primary/25 p-1 shadow-[0_0_35px_hsl(var(--primary)/0.3)] [--z:34px]">
+                <img
+                  src={profile.photo}
+                  alt={`Portrait of ${profile.fullName}`}
+                  width="560"
+                  height="560"
+                  fetchPriority="high"
+                  className="h-28 w-28 rounded-full object-cover md:h-36 md:w-36"
+                />
+              </div>
+            </TiltCard>
           </div>
 
           <p className="animate-fade-in inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm text-muted-foreground opacity-0 backdrop-blur-sm">
@@ -95,17 +103,24 @@ export const HeroSection = () => {
 
           <dl className="animate-fade-in-delay-5 mx-auto grid max-w-2xl grid-cols-1 gap-4 pt-8 opacity-0 sm:grid-cols-3">
             {highlights.map((item) => (
-              <div
+              <TiltCard
                 key={item.label}
-                className="rounded-xl border border-border bg-card/60 p-4 backdrop-blur-sm"
+                max={10}
+                className="h-full rounded-xl border border-border bg-card/60 p-4"
               >
-                <dt className="text-sm font-semibold text-primary">
+                {/* The blur gets its own layer: backdrop-filter on the card
+                    face itself would flatten the 3D group and kill the depth. */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-[inherit] backdrop-blur-sm"
+                />
+                <dt className="layer-3d text-sm font-semibold text-primary [--z:26px]">
                   {item.label}
                 </dt>
-                <dd className="mt-1 text-sm text-muted-foreground">
+                <dd className="layer-3d mt-1 text-sm text-muted-foreground [--z:14px]">
                   {item.detail}
                 </dd>
-              </div>
+              </TiltCard>
             ))}
           </dl>
         </div>

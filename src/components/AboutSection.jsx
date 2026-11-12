@@ -2,6 +2,7 @@ import { Container, Download, FileText, Server, Code2 } from "lucide-react";
 import { profile } from "@/data/profile";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+import { TiltCard } from "./TiltCard";
 
 const focusAreas = [
   {
@@ -61,18 +62,18 @@ export const AboutSection = () => {
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {focusAreas.map((area, index) => (
-              <Reveal
-                key={area.title}
-                delay={index * 90}
-                className="gradient-border card-hover p-6 text-left"
-              >
-                <div className="mb-4 inline-flex rounded-full bg-primary/10 p-3">
-                  <area.icon className="h-6 w-6 text-primary" aria-hidden="true" />
-                </div>
-                <h4 className="mb-2 text-lg font-semibold">{area.title}</h4>
-                <p className="text-sm text-muted-foreground">
-                  {area.description}
-                </p>
+              <Reveal key={area.title} delay={index * 90}>
+                <TiltCard className="gradient-border h-full p-6 text-left">
+                  <div className="layer-3d mb-4 inline-flex rounded-full bg-primary/10 p-3 [--z:32px]">
+                    <area.icon className="h-6 w-6 text-primary" aria-hidden="true" />
+                  </div>
+                  <h4 className="layer-3d mb-2 text-lg font-semibold [--z:22px]">
+                    {area.title}
+                  </h4>
+                  <p className="layer-3d text-sm text-muted-foreground [--z:12px]">
+                    {area.description}
+                  </p>
+                </TiltCard>
               </Reveal>
             ))}
           </div>

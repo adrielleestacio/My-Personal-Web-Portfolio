@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils";
 import { skillGroups, softSkills } from "@/data/skills";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+import { TiltCard } from "./TiltCard";
 
 const icons = {
   code: Code,
@@ -119,49 +120,55 @@ export const SkillsSection = () => {
             const Icon = icons[group.icon] ?? Code;
 
             return (
-              <Reveal
-                key={group.id}
-                delay={index * 80}
-                className="card-hover rounded-xl border border-border bg-card p-6 text-left"
-              >
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="inline-flex rounded-lg bg-primary/10 p-2">
-                    <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
-                  </span>
-                  <h3 className="text-lg font-semibold">{group.title}</h3>
-                </div>
+              <Reveal key={group.id} delay={index * 80}>
+                <TiltCard className="h-full rounded-xl border border-border bg-card p-6 text-left transition-colors duration-300 hover:border-primary/40">
+                  <div className="layer-3d mb-4 flex items-center gap-3 [--z:30px]">
+                    <span className="inline-flex rounded-lg bg-primary/10 p-2">
+                      <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
+                    </span>
+                    <h3 className="text-lg font-semibold">{group.title}</h3>
+                  </div>
 
-                <ul className="flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
-                    <SkillChip
-                      key={skill.name}
-                      skill={skill}
-                      fallbackIcon={Icon}
-                    />
-                  ))}
-                </ul>
+                  <ul className="layer-3d flex flex-wrap gap-2 [--z:14px]">
+                    {group.skills.map((skill) => (
+                      <SkillChip
+                        key={skill.name}
+                        skill={skill}
+                        fallbackIcon={Icon}
+                      />
+                    ))}
+                  </ul>
+                </TiltCard>
               </Reveal>
             );
           })}
         </div>
 
-        <Reveal className="mt-10 rounded-xl border border-border bg-card p-6 text-left">
-          <h3 className="mb-4 text-lg font-semibold">Soft Skills</h3>
-          <ul className="flex flex-wrap gap-2">
-            {softSkills.map((skill) => {
-              const SoftIcon = softIcons[skill.icon] ?? Sparkles;
+        <Reveal className="mt-10">
+          {/* A wide card, so it leans far less than the square ones above. */}
+          <TiltCard
+            max={4}
+            className="rounded-xl border border-border bg-card p-6 text-left"
+          >
+            <h3 className="layer-3d mb-4 text-lg font-semibold [--z:22px]">
+              Soft Skills
+            </h3>
+            <ul className="layer-3d flex flex-wrap gap-2 [--z:12px]">
+              {softSkills.map((skill) => {
+                const SoftIcon = softIcons[skill.icon] ?? Sparkles;
 
-              return (
-                <li
-                  key={skill.name}
-                  className="flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary"
-                >
-                  <SoftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  {skill.name}
-                </li>
-              );
-            })}
-          </ul>
+                return (
+                  <li
+                    key={skill.name}
+                    className="flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary"
+                  >
+                    <SoftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    {skill.name}
+                  </li>
+                );
+              })}
+            </ul>
+          </TiltCard>
         </Reveal>
       </div>
     </section>

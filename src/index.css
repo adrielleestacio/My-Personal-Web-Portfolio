@@ -38,6 +38,7 @@
   --animate-twinkle: twinkle 4s ease-in-out infinite;
   --animate-aurora: aurora-drift 26s ease-in-out infinite;
   --animate-aurora-slow: aurora-drift 38s ease-in-out infinite reverse;
+  --animate-ring-spin: ring-spin 16s linear infinite;
 
   @keyframes twinkle {
     0%,
@@ -114,6 +115,11 @@
   @keyframes gradient-shift {
     to {
       background-position: 200% center;
+    }
+  }
+  @keyframes ring-spin {
+    to {
+      transform: rotate(1turn);
     }
   }
 }
@@ -263,10 +269,6 @@
   animation: gradient-shift 6s linear infinite;
 }
 
-@utility card-hover {
-  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
-}
-
 @utility gradient-border {
   @apply relative rounded-xl border border-border bg-card;
 }
@@ -341,6 +343,76 @@
 
 @utility reveal-visible {
   @apply translate-y-0 opacity-100;
+}
+
+/* ── 3D surfaces ──────────────────────────────────────
+   TiltCard writes the pointer position (--mx/--my) and a 0 → 1 hover ramp
+   (--lift) onto .tilt-face; every layer below reads those. preserve-3d is what
+   lets a layer-3d child stand off the face, so a face must never also carry
+   overflow-hidden — that flattens the whole group back into one plane. Clip
+   the child that needs clipping instead. */
+
+@utility tilt-face {
+  transform: perspective(1000px);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Raises a child off the card face so it parallaxes as the face turns. */
+@utility layer-3d {
+  transform: translateZ(calc(var(--z, 26px) * var(--lift, 0)));
+  transform-style: preserve-3d;
+}
+
+/* Wide, primary-tinted wash trailing the pointer. */
+@utility tilt-glare {
+  @apply pointer-events-none absolute inset-0 rounded-[inherit] opacity-0
+         transition-opacity duration-300 group-hover:opacity-100;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    hsl(var(--primary) / 0.16),
+    transparent 60%
+  );
+}
+
+/* Tight specular highlight over the wash — this is the bit that reads as a
+   hard surface catching a light rather than a coloured hover state. */
+@utility tilt-sheen {
+  @apply pointer-events-none absolute inset-0 rounded-[inherit];
+  opacity: calc(var(--lift, 0) * 0.85);
+  background: radial-gradient(
+      200px circle at var(--mx, 50%) var(--my, 50%),
+      hsl(0 0% 100% / 0.38),
+      transparent 70%
+    ),
+    linear-gradient(to bottom, hsl(0 0% 100% / 0.14), transparent 45%);
+  mix-blend-mode: soft-light;
+}
+
+/* Thin rotating rim light. The mask keeps only the outer few pixels, so the
+   conic gradient reads as a ring being lit rather than a filled disc. */
+@utility orbit-ring {
+  @apply pointer-events-none absolute rounded-full;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    hsl(var(--primary) / 0.6) 16%,
+    transparent 36%,
+    transparent 56%,
+    hsl(280 70% 72% / 0.55) 74%,
+    transparent 94%
+  );
+  animation: ring-spin 16s linear infinite;
+  mask-image: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 7px),
+    #000 calc(100% - 6px)
+  );
+  -webkit-mask-image: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 7px),
+    #000 calc(100% - 6px)
+  );
 }
 
 #root {

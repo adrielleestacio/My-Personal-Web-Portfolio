@@ -27,12 +27,12 @@ const kindIcons = {
 const ProjectArt = ({ project }) => {
   if (project.image) {
     return (
-      <div className="h-48 overflow-hidden bg-secondary">
+      <div className="h-48 overflow-hidden rounded-t-xl bg-secondary [perspective:700px]">
         <img
           src={project.image}
           alt={`Screenshot of ${project.title}`}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="layer-3d h-full w-full object-cover [--z:34px]"
         />
       </div>
     );
@@ -43,9 +43,9 @@ const ProjectArt = ({ project }) => {
   return (
     <div
       aria-hidden="true"
-      className="flex h-28 items-center justify-center bg-linear-to-br from-primary/15 to-primary/5"
+      className="flex h-28 items-center justify-center rounded-t-xl bg-linear-to-br from-primary/15 to-primary/5 [perspective:700px]"
     >
-      <Icon className="h-10 w-10 text-primary/70 transition-transform duration-500 group-hover:scale-110" />
+      <Icon className="layer-3d h-10 w-10 text-primary/70 [--z:40px]" />
     </div>
   );
 };
@@ -94,66 +94,71 @@ const ProjectLinks = ({ project }) => (
 );
 
 const FeaturedProject = ({ project }) => (
-  <Reveal className="mb-12 overflow-hidden rounded-2xl border border-border bg-card text-left">
-    <div className="border-b border-border bg-primary/5 px-6 py-4 sm:px-8">
-      <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-primary">
-        <Sparkles size={16} aria-hidden="true" />
-        Featured — Capstone Project
-      </p>
-    </div>
-
-    {project.image && (
-      <div className="border-b border-border bg-secondary/40">
-        <img
-          src={project.image}
-          alt={`Screenshot of ${project.title}`}
-          loading="lazy"
-          className="w-full object-cover"
-        />
-      </div>
-    )}
-
-    <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-5">
-      <div className="lg:col-span-3">
-        <h3 className="text-2xl font-semibold">{project.title}</h3>
-        <p className="mt-1 text-sm text-muted-foreground">{project.subtitle}</p>
-
-        <p className="mt-4 text-muted-foreground">{project.description}</p>
-
-        <h4 className="mt-6 text-sm font-semibold uppercase tracking-wider text-foreground/70">
-          My role — {project.role}
-        </h4>
-        <ul className="mt-3 space-y-2">
-          {project.contributions.map((item) => (
-            <li
-              key={item}
-              className="flex gap-3 text-sm text-muted-foreground"
-            >
-              <span
-                aria-hidden="true"
-                className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
-              />
-              {item}
-            </li>
-          ))}
-        </ul>
+  <Reveal className="mb-12">
+    <TiltCard
+      max={3}
+      className="overflow-hidden rounded-2xl border border-border bg-card text-left"
+    >
+      <div className="border-b border-border bg-primary/5 px-6 py-4 sm:px-8">
+        <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-primary">
+          <Sparkles size={16} aria-hidden="true" />
+          Featured — Capstone Project
+        </p>
       </div>
 
-      <div className="lg:col-span-2">
-        <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground/70">
-          Tools
-        </h4>
-        <ul className="mt-3 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </ul>
+      {project.image && (
+        <div className="border-b border-border bg-secondary/40">
+          <img
+            src={project.image}
+            alt={`Screenshot of ${project.title}`}
+            loading="lazy"
+            className="w-full object-cover"
+          />
+        </div>
+      )}
 
-        <div className="mt-6">
-          <ProjectLinks project={project} />
+      <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-5">
+        <div className="lg:col-span-3">
+          <h3 className="text-2xl font-semibold">{project.title}</h3>
+          <p className="mt-1 text-sm text-muted-foreground">{project.subtitle}</p>
+
+          <p className="mt-4 text-muted-foreground">{project.description}</p>
+
+          <h4 className="mt-6 text-sm font-semibold uppercase tracking-wider text-foreground/70">
+            My role — {project.role}
+          </h4>
+          <ul className="mt-3 space-y-2">
+            {project.contributions.map((item) => (
+              <li
+                key={item}
+                className="flex gap-3 text-sm text-muted-foreground"
+              >
+                <span
+                  aria-hidden="true"
+                  className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
+                />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="lg:col-span-2">
+          <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground/70">
+            Tools
+          </h4>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+          </ul>
+
+          <div className="mt-6">
+            <ProjectLinks project={project} />
+          </div>
         </div>
       </div>
-    </div>
+    </TiltCard>
   </Reveal>
 );
 
@@ -182,10 +187,10 @@ export const ProjectsSection = () => {
               delay={index * 90}
               data-cursor={`${project.title} — take a look`}
             >
-              <TiltCard className="flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card text-left transition-shadow duration-300 hover:border-primary/40 hover:shadow-xl">
+              <TiltCard className="flex h-full flex-col rounded-xl border border-border bg-card text-left transition-colors duration-300 hover:border-primary/40">
                 <ProjectArt project={project} />
 
-                <div className="flex flex-1 flex-col p-6">
+                <div className="layer-3d flex flex-1 flex-col p-6 [--z:16px]">
                   <ul className="mb-4 flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <Tag key={tag}>{tag}</Tag>
