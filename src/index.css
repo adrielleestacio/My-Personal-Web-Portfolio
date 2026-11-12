@@ -284,7 +284,9 @@
 @utility ghost-button {
   @apply inline-flex items-center justify-center gap-2 rounded-full border
          border-primary px-6 py-2.5 font-medium text-primary
-         transition-colors duration-300 hover:bg-primary/10;
+         transition-all duration-300 hover:bg-primary/10
+         hover:shadow-[0_10px_22px_-12px_hsl(var(--primary)/0.9)]
+         hover:-translate-y-0.5 active:translate-y-0;
 }
 
 @utility star {

@@ -3,7 +3,10 @@ import { Reveal } from "./Reveal";
 export const SectionHeading = ({ eyebrow, title, accent, description }) => (
   <Reveal className="mb-12 text-center">
     {eyebrow && (
-      <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+      /* A pill rather than bare caps — it gives every section the same
+         recognisable opening mark instead of a stray line of small text. */
+      <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-primary" />
         {eyebrow}
       </p>
     )}

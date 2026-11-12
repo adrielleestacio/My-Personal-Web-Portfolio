@@ -122,9 +122,14 @@ export const ContactSection = () => {
           <Reveal className="space-y-8 text-left">
             <h3 className="text-2xl font-semibold">Contact Information</h3>
 
-            <ul className="space-y-6">
+            {/* Cards rather than bare rows: the column sat next to a tall
+                bordered form and looked unfinished beside it. */}
+            <ul className="space-y-4">
               {details.map((detail) => (
-                <li key={detail.label} className="flex items-start gap-4">
+                <li
+                  key={detail.label}
+                  className="flex items-start gap-4 rounded-xl border border-border bg-card p-4 transition-colors duration-300 hover:border-primary/40"
+                >
                   <span className="rounded-full bg-primary/10 p-3">
                     <detail.icon
                       className="h-5 w-5 text-primary"

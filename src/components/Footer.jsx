@@ -15,7 +15,7 @@ export const Footer = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <SocialLinks size={18} />
+          <SocialLinks compact size={17} />
           <a
             href="#hero"
             aria-label="Back to top"

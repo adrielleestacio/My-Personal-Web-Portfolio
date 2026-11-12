@@ -27,7 +27,7 @@ const kindIcons = {
 const ProjectArt = ({ project }) => {
   if (project.image) {
     return (
-      <div className="h-48 overflow-hidden rounded-t-xl bg-secondary [perspective:700px]">
+      <div className="h-44 overflow-hidden rounded-t-xl bg-secondary [perspective:700px]">
         <img
           src={project.image}
           alt={`Screenshot of ${project.title}`}
@@ -184,23 +184,23 @@ export const ProjectsSection = () => {
 
         {featured && <FeaturedProject project={featured} />}
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* A wrapping flex row rather than a grid, so the short last row
+            centres itself instead of hugging the left edge. */}
+        <div className="flex flex-wrap justify-center gap-8">
           {rest.map((project, index) => (
             <Reveal
               key={project.id}
               delay={index * 90}
+              className="flex w-full md:w-[calc((100%-2rem)/2)] lg:w-[calc((100%-4rem)/3)]"
               data-cursor={`${project.title} — take a look`}
             >
-              <TiltCard className="flex h-full flex-col rounded-xl border border-border bg-card text-left transition-colors duration-300 hover:border-primary/40">
+              <TiltCard className="flex w-full flex-col rounded-xl border border-border bg-card text-left transition-colors duration-300 hover:border-primary/40">
                 <ProjectArt project={project} />
 
                 <div className="layer-3d flex flex-1 flex-col p-6 [--z:16px]">
-                  <ul className="mb-4 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Tag key={tag}>{tag}</Tag>
-                    ))}
-                  </ul>
-
+                  {/* Title first, so every card in a row lines up under its
+                      screenshot — tag rows vary in height and used to push it
+                      around. */}
                   <div className="mb-2 flex items-baseline justify-between gap-3">
                     <h3 className="text-xl font-semibold">{project.title}</h3>
                     {project.year && (
@@ -209,9 +209,15 @@ export const ProjectsSection = () => {
                       </span>
                     )}
                   </div>
-                  <p className="mb-6 flex-1 text-sm text-muted-foreground">
+                  <p className="mb-5 flex-1 text-sm text-muted-foreground">
                     {project.description}
                   </p>
+
+                  <ul className="mb-5 flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <Tag key={tag}>{tag}</Tag>
+                    ))}
+                  </ul>
 
                   <ProjectLinks project={project} />
                 </div>

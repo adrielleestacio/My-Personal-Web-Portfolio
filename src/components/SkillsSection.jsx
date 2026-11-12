@@ -150,9 +150,12 @@ export const SkillsSection = () => {
             max={4}
             className="rounded-xl border border-border bg-card p-6 text-left"
           >
-            <h3 className="layer-3d mb-4 text-lg font-semibold [--z:22px]">
-              Soft Skills
-            </h3>
+            <div className="layer-3d mb-4 flex items-center gap-3 [--z:22px]">
+              <span className="inline-flex rounded-lg bg-primary/10 p-2">
+                <Handshake className="h-5 w-5 text-primary" aria-hidden="true" />
+              </span>
+              <h3 className="text-lg font-semibold">Soft Skills</h3>
+            </div>
             <ul className="layer-3d flex flex-wrap gap-2 [--z:12px]">
               {softSkills.map((skill) => {
                 const SoftIcon = softIcons[skill.icon] ?? Sparkles;
