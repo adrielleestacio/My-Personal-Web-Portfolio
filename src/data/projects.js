@@ -41,7 +41,8 @@ export const projects = [
     description:
       "A Laravel to-do app following the MVC pattern — an Eloquent model and migration, a controller for creating, viewing, editing, completing and deleting items, Blade templates, and flash messages for user feedback.",
     tags: ["Laravel", "PHP", "Blade", "MySQL"],
-    image: null,
+    image: "/projects/laravel-todo.webp",
+    imageSize: { w: 790, h: 467 },
     demoUrl: null,
     demoNote: "Laravel app — needs a PHP server, so it runs locally",
     githubUrl: "https://github.com/adrielleestacio/to-do-list",
@@ -54,7 +55,8 @@ export const projects = [
     description:
       "A browser Wordle built from scratch in vanilla JavaScript — a generated board and on-screen keyboard, keyboard event handling, tile animations and five attempts per round — with the word list swapped for my classmates' names.",
     tags: ["HTML", "CSS", "JavaScript"],
-    image: null,
+    image: "/projects/wordle.webp",
+    imageSize: { w: 1184, h: 700 },
     demoUrl: "https://adrielleestacio.github.io/Wordle-Game/",
     githubUrl: "https://github.com/adrielleestacio/Wordle-Game",
   },
