@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://my-personal-portfolio-pi-one.vercel.app/sitemap.xml

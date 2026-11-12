@@ -32,6 +32,8 @@ const ProjectArt = ({ project }) => {
           src={project.image}
           alt={`Screenshot of ${project.title}`}
           loading="lazy"
+          width={project.imageSize?.w}
+          height={project.imageSize?.h}
           className="layer-3d h-full w-full object-cover [--z:34px]"
         />
       </div>
@@ -112,6 +114,8 @@ const FeaturedProject = ({ project }) => (
             src={project.image}
             alt={`Screenshot of ${project.title}`}
             loading="lazy"
+            width={project.imageSize?.w}
+            height={project.imageSize?.h}
             className="w-full object-cover"
           />
         </div>
