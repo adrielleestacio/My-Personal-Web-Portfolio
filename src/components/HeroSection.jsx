@@ -51,7 +51,10 @@ export const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="animate-fade-in-delay-3 min-h-[2em] text-lg font-medium opacity-0 md:text-xl">
+          {/* The height is reserved for two lines on phones, where the
+              longer lines wrap — otherwise the whole hero jumps as it types. */}
+          <p className="animate-fade-in-delay-3 min-h-[3.5em] text-lg font-medium opacity-0 md:min-h-[2em] md:text-xl">
+            <span className="text-foreground/70">I&apos;m </span>
             <Typewriter
               words={profile.roles}
               className="font-semibold text-primary"

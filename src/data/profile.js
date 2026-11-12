@@ -2,13 +2,16 @@ export const profile = {
   firstName: "Adrielle",
   // Short name shown on the custom cursor flag. Change freely.
   cursorName: "Dei",
-  // Cycled by the hero typewriter, one full sentence at a time.
+  // Cycled by the hero typewriter. The hero prints a static "I'm" in front,
+  // so each line only has to finish that sentence — retyping the same four
+  // words every loop wasted most of the animation. They run identity →
+  // craft → tooling → what I'm on now → what I'm after.
   roles: [
-    "I am a BS Information Technology Student (Undergraduate)",
-    "I am an aspiring Web Developer",
-    "I am a Back-End Developer",
-    "I specialize in Deployment and DevOps",
-    "I am seeking an IT Internship opportunity",
+    "a BS Information Technology student",
+    "a back-end developer",
+    "shipping with Docker and GitHub Actions",
+    "building HabitAI, our AI habit tracker",
+    "looking for an IT internship",
   ],
   lastName: "Estacio",
   fullName: "Adrielle Q. Estacio",
