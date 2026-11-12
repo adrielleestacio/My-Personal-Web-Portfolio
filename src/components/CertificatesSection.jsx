@@ -1,8 +1,17 @@
 import { Award, CalendarDays, ExternalLink, MapPin, ScrollText } from "lucide-react";
 import { certificates } from "@/data/certificates";
+import { cn } from "@/lib/utils";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { TiltCard } from "./TiltCard";
+
+// A three-column grid looks half-empty until there are three certificates, so
+// narrow the track to match however many there actually are.
+const gridFor = (count) => {
+  if (count === 1) return "mx-auto max-w-sm";
+  if (count === 2) return "mx-auto max-w-3xl sm:grid-cols-2";
+  return "sm:grid-cols-2 lg:grid-cols-3";
+};
 
 export const CertificatesSection = () => {
   return (
@@ -14,7 +23,7 @@ export const CertificatesSection = () => {
           accent="Awards"
         />
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={cn("grid gap-6", gridFor(certificates.length))}>
           {certificates.map((cert, index) => (
             <Reveal key={cert.id} delay={index * 100}>
               <TiltCard>
