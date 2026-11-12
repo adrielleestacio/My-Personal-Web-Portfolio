@@ -17,6 +17,7 @@ export const projects = [
     tags: ["Docker", "GitHub Actions", "PWA", "TypeScript", "Android Studio"],
     image: "/projects/habitai.webp",
     demoUrl: null,
+    demoNote: "Team capstone — not publicly hosted, demo available on request",
     githubUrl: "https://github.com/adrielleestacio/Capstone-Project",
   },
   {
@@ -40,6 +41,7 @@ export const projects = [
     tags: ["Laravel", "PHP", "Blade", "MySQL"],
     image: null,
     demoUrl: null,
+    demoNote: "Laravel app — needs a PHP server, so it runs locally",
     githubUrl: "https://github.com/adrielleestacio/to-do-list",
   },
   {
@@ -58,24 +60,24 @@ export const projects = [
     id: "client-crud",
     title: "Client Records CRUD",
     year: "2025",
-    kind: "database",
     description:
       "A plain PHP and MySQL app for managing client records — list, create, edit and delete — with a Bootstrap 5 UI. Built first to learn server-side CRUD without a framework, then hardened: prepared statements, validated IDs, escaped output, and a POST-only delete with confirmation.",
     tags: ["PHP", "MySQL", "MySQLi", "Bootstrap"],
-    image: null,
+    image: "/projects/client-crud.webp",
     demoUrl: null,
+    demoNote: "PHP + MySQL — shown here running on a local server",
     githubUrl: "https://github.com/adrielleestacio/CRUD-OPERATION",
   },
   {
     id: "login-system",
     title: "Register & Login System",
     year: "2025",
-    kind: "lock",
     description:
       "A PHP registration and sign-in flow on a MySQL users table with a session-protected homepage. Started as a tutorial-style build, later hardened: bcrypt password hashing, prepared statements against SQL injection, session-ID regeneration on login, escaped output, and a transparent md5-to-bcrypt upgrade for existing accounts.",
     tags: ["PHP", "MySQL", "bcrypt", "Sessions"],
-    image: null,
+    image: "/projects/login-system.webp",
     demoUrl: null,
+    demoNote: "PHP + MySQL — shown here running on a local server",
     githubUrl: "https://github.com/adrielleestacio/login-form",
   },
   {

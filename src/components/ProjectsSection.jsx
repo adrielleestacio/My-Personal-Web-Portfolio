@@ -5,6 +5,7 @@ import {
   ExternalLink,
   Gamepad2,
   Github,
+  Info,
   ListChecks,
   Lock,
   Sparkles,
@@ -56,7 +57,7 @@ const Tag = ({ children }) => (
 );
 
 const ProjectLinks = ({ project }) => (
-  <div className="flex items-center gap-3">
+  <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
     {project.demoUrl && (
       <a
         href={project.demoUrl}
@@ -80,6 +81,14 @@ const ProjectLinks = ({ project }) => (
         <Github size={18} aria-hidden="true" />
         <span>Code</span>
       </a>
+    )}
+
+    {/* Say why a project has no live link instead of leaving a silent gap. */}
+    {!project.demoUrl && project.demoNote && (
+      <p className="flex w-full items-start gap-1.5 text-xs text-muted-foreground">
+        <Info size={14} className="mt-px shrink-0 text-primary/60" aria-hidden="true" />
+        {project.demoNote}
+      </p>
     )}
   </div>
 );
