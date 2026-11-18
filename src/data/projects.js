@@ -19,6 +19,7 @@ export const projects = [
     imageSize: { w: 1200, h: 622 },
     demoUrl: null,
     demoNote: "Team capstone — not publicly hosted, demo available on request",
+    caseStudyUrl: "/projects/habitai",
     githubUrl: "https://github.com/adrielleestacio/Capstone-Project",
   },
   {

@@ -10,6 +10,7 @@ import {
   Lock,
   Sparkles,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { projects } from "@/data/projects";
 import { socials } from "@/data/profile";
 import { SectionHeading } from "./SectionHeading";
@@ -157,7 +158,17 @@ const FeaturedProject = ({ project }) => (
             ))}
           </ul>
 
-          <div className="mt-6">
+          <div className="mt-6 space-y-4">
+            {project.caseStudyUrl && (
+              <Link
+                to={project.caseStudyUrl}
+                data-cursor="The whole story"
+                className="cosmic-button w-full"
+              >
+                Read the case study
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            )}
             <ProjectLinks project={project} />
           </div>
         </div>

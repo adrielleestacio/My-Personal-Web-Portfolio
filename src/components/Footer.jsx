@@ -16,13 +16,16 @@ export const Footer = () => {
 
         <div className="flex items-center gap-4">
           <SocialLinks compact size={17} />
-          <a
-            href="#hero"
+          {/* Scrolling rather than linking to #hero: the case study pages
+              have no hero, so the anchor was a dead control there. */}
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Back to top"
             className="rounded-full bg-primary/10 p-2 text-primary transition-colors hover:bg-primary/20"
           >
             <ArrowUp size={20} aria-hidden="true" />
-          </a>
+          </button>
         </div>
       </div>
     </footer>

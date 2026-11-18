@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Home } from "./pages/Home"
 import { NotFound } from "./pages/NotFound"
+import { HabitAICaseStudy } from "./pages/HabitAICaseStudy"
 import { Toaster } from "@/components/ui/toaster"
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
+          <Route path="/projects/habitai" element={<HabitAICaseStudy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
