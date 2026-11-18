@@ -92,7 +92,7 @@ export const projects = [
     title: "Circular Tower Game",
     year: "2025",
     description:
-      "An interactive browser game built from scratch with vanilla JavaScript, focusing on game loop timing, collision logic, and canvas rendering.",
+      "A canvas platformer set on a rotating tower, adapted from the Unruly Tower pen by johan-tirholm on CodePen. A study piece rather than my own design — the parts worth reading are the frame loop, the collision handling, and the way sprites are pre-rendered offscreen.",
     tags: ["HTML", "CSS", "JavaScript"],
     image: "/projects/project2.webp",
     imageSize: { w: 900, h: 468 },
