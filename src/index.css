@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Inter is served from our own origin rather than Google's CDN. Two fewer
+   DNS + TLS handshakes before text can paint, and no visitor's IP goes to a
+   third party just to load a typeface. The weight axis is one variable file
+   covering 100-900; the browser only fetches the subset it needs. */
+@import "@fontsource-variable/inter/wght.css";
+
 @theme {
   /* Colors — every token here must have a matching --<name> in :root below,
      otherwise the utility class silently compiles to nothing. */
@@ -203,8 +209,8 @@
 
   body {
     @apply bg-background text-foreground transition-colors duration-300;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-      sans-serif;
+    font-family: "Inter Variable", Inter, ui-sans-serif, system-ui,
+      -apple-system, "Segoe UI", sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
   }

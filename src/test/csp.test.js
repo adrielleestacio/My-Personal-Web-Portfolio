@@ -66,7 +66,15 @@ describe("content security policy", () => {
   it("allows the hosts the app actually talks to", () => {
     expect(csp).toContain("https://api.web3forms.com");
     expect(csp).toContain("https://cdn.simpleicons.org");
-    expect(csp).toContain("https://fonts.gstatic.com");
+  });
+
+  // Inter is bundled and served from our own origin. If a Google Fonts link
+  // ever creeps back into index.html it will be blocked rather than quietly
+  // reopening a third-party connection on every visit.
+  it("does not reopen a path to the font CDNs", () => {
+    expect(csp).not.toContain("fonts.googleapis.com");
+    expect(csp).not.toContain("fonts.gstatic.com");
+    expect(html).not.toContain("fonts.googleapis.com");
   });
 });
 
