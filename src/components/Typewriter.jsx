@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 /**
  * Types and deletes through a list of words on a loop. Shows the first word
  * statically under reduced motion.
+ *
+ * Purely decorative: the text in the DOM is a fragment most of the time, so
+ * the caller is responsible for giving assistive tech a stable equivalent and
+ * hiding this from it.
  */
 export const Typewriter = ({
   words,

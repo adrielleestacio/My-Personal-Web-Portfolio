@@ -54,11 +54,19 @@ export const HeroSection = () => {
           {/* The height is reserved for two lines on phones, where the
               longer lines wrap — otherwise the whole hero jumps as it types. */}
           <p className="animate-fade-in-delay-3 min-h-[3.5em] text-lg font-medium opacity-0 md:min-h-[2em] md:text-xl">
-            <span className="text-foreground/70">I&apos;m </span>
-            <Typewriter
-              words={profile.roles}
-              className="font-semibold text-primary"
-            />
+            {/* A screen reader lands on whatever half-typed fragment is in
+                the DOM at that moment, so the animation is hidden from it and
+                the whole list is announced once instead. */}
+            <span className="sr-only">
+              {profile.roles.map((role) => `I'm ${role}.`).join(" ")}
+            </span>
+            <span aria-hidden="true">
+              <span className="text-foreground/70">I&apos;m </span>
+              <Typewriter
+                words={profile.roles}
+                className="font-semibold text-primary"
+              />
+            </span>
           </p>
 
           <p className="animate-fade-in-delay-3 mx-auto max-w-2xl text-base text-muted-foreground opacity-0 md:text-lg">
