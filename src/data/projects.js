@@ -54,8 +54,8 @@ export const projects = [
     year: "2025",
     kind: "game",
     description:
-      "A browser Wordle built from scratch in vanilla JavaScript — a generated board and on-screen keyboard, keyboard event handling, tile animations and five attempts per round — with the word list swapped for my classmates' names.",
-    tags: ["HTML", "CSS", "JavaScript"],
+      "A browser Wordle in React, with the word list swapped for my classmates' names. The scoring is a pure function the UI knows nothing about, so the part worth getting right — how repeated letters are coloured — is covered by tests, and a push runs them before Actions deploys the build.",
+    tags: ["React", "Vite", "Vitest", "GitHub Actions"],
     image: "/projects/wordle.webp",
     imageSize: { w: 1184, h: 700 },
     demoUrl: "https://adrielleestacio.github.io/Wordle-Game/",
